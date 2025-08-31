@@ -1,0 +1,60 @@
+<form [formGroup]="loginForm" (ngSubmit)="onsubmit()">
+  <div class="login-container">
+    <div class="login-box">
+      <h2 class="title">Welcome Back 👋</h2>
+      <p class="subtitle">Login to continue</p>
+
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          formControlName="username"
+          class="form-control"
+          required
+          [ngClass]="{
+            'is-invalid':
+              loginForm.get('username')?.invalid &&
+              (loginForm.get('username')?.touched || loginForm.get('username')?.dirty),
+            'is-valid':
+              loginForm.get('username')?.valid &&
+              (loginForm.get('username')?.touched || loginForm.get('username')?.dirty),
+
+          }"
+        />
+      </div>
+      @if (loginForm.get('username')?.invalid && loginForm.get("username")?.touched) {
+      <div class="text-danger mb-4">Email must be vaild</div>
+      }
+
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          formControlName="password"
+          required
+          [ngClass]="{
+            'is-invalid':
+              loginForm.get('password')?.invalid &&
+              (loginForm.get('password')?.dirty || loginForm.get('password')?.touched),
+            'is-valid':
+              loginForm.get('password')?.valid &&
+              (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
+          }"
+        />
+      </div>
+      @if (loginForm.get('password')?.invalid && loginForm.get("password")?.touched) {
+      <div class="text-danger mb-4">password must be at least 6 char</div>
+      }
+
+      <button type="submit" class="login-btn mb-4" [disabled]="loginForm.invalid">Login</button>
+      <button type="button" class="btn btn-secondary w-100" (click)="onrest()">reset</button>
+
+      <div class="extra-links">
+        <a href="#">Forgot Password?</a>
+        <a href="#">Create Account</a>
+      </div>
+    </div>
+  </div>
+</form>

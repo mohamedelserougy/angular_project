@@ -1,0 +1,6 @@
+.active {
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
+  background: transparent;
+  font-weight: bold;
+}

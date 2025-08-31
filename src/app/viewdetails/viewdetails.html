@@ -1,0 +1,56 @@
+<!-- Product Details Modal -->
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content rounded-4 shadow-lg border-0 popup-card p-2">
+    <!-- Header -->
+    <div class="modal-header bg-dark text-white rounded-top-4 border-0">
+      <h5 class="modal-title fw-bold p-3">{{ product.name }}</h5>
+      <button
+        type="button"
+        class="btn-close btn-close-white p-2"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="close()"
+      ></button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="row align-items-center">
+        <!-- Product Image -->
+        <div class="col-md-5 text-center mb-3 mb-md-0">
+          <img
+            [src]="product.img"
+            [alt]="product.name"
+            class="img-fluid rounded-3 shadow-sm popup-img"
+          />
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-7">
+          <h4 class="fw-semibold mb-2">{{ product.name }}</h4>
+          <p class="price fs-5 fw-bold text-danger">{{ product.price }}</p>
+
+          <div class="status mb-3">
+            @switch (product.quantity) { @case (0) {
+            <span class="badge bg-danger px-3 py-2">Out of stock</span> } @case (1) {
+            <span class="badge bg-warning text-dark px-3 py-2">Last one item</span> } @case (2) {
+            <span class="badge bg-warning text-dark px-3 py-2">Last two items</span> } @default {
+            <span class="badge bg-success px-3 py-2">In stock {{ product.quantity }}</span> } }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer border-0">
+      <button
+        type="button"
+        class="btn btn-danger rounded-pill px-4"
+        data-bs-dismiss="modal"
+        (click)="close()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

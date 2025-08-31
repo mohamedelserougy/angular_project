@@ -1,0 +1,17 @@
+@if (product) {
+<div class="details-container">
+  <div class="details-card">
+    <div class="image-section">
+      <img [src]="product.img" [alt]="product.name" />
+    </div>
+    <div class="info-section">
+      <h2>{{ product.name }}</h2>
+      <p class="price">$ {{ product.price }}</p>
+      <p class="quantity">In Stock: {{ product.quantity }}</p>
+      <p class="category">Category: {{ product.categoryID }}</p>
+
+      <button class="btn-buy">🛒 Add to Cart</button>
+    </div>
+  </div>
+</div>
+}

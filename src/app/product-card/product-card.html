@@ -1,0 +1,96 @@
+<div class="product-card" appDirective>
+  <div class="product-img">
+    <img [src]="product.img" alt="{{ product.name }}" />
+  </div>
+  <div class="product-info">
+    <h5>{{ product.name }}</h5>
+    <p class="price">{{ product.price | currency }}</p>
+
+    <div class="status">
+      @switch (product.quantity) { @case (0) {
+      <span class="badge danger">Out of stock</span>
+      } @case (1) {
+      <span class="badge warning">Last one item</span>
+      } @case (2) {
+      <span class="badge warning">Last two items</span>
+      } @default {
+      <span class="badge success">In stock {{ product.quantity }}</span>
+      } }
+    </div>
+    <p>{{ creditnem | custompipe }}</p>
+    <!-- <button
+        class="add-to-cart"
+        (click)="decrease(product.id)"~
+        [disabled]="product.quantity === 0"
+      >
+        🛒 Add to Cart
+      </button> -->
+    <div class="d-flex justify-content-between">
+      <button class="btn rounded-2 bg-warning p-2" (click)="onviewdetails()">veiw details</button>
+      <button class="btn rounded-2 bg-warning p-2" (click)="getproduct(product.id)">
+        veiw product
+      </button>
+    </div>
+  </div>
+</div>
+
+@if (specificProduct) {
+<!-- Product Details Modal -->
+<div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-content rounded-4 shadow-lg border-0 popup-card p-2">
+    <!-- Header -->
+    <div class="modal-header bg-dark text-white rounded-top-4 border-0">
+      <h5 class="modal-title fw-bold p-3">{{ specificProduct.name }}</h5>
+      <button
+        type="button"
+        class="btn-close btn-close-white p-3"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        (click)="close(specificProduct.id)"
+      ></button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="row align-items-center">
+        <!-- Product Image -->
+        <div class="col-md-5 text-center mb-3 mb-md-0">
+          <img
+            [src]="product.img"
+            [alt]="product.name"
+            class="img-fluid rounded-3 shadow-sm popup-img"
+          />
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-7">
+          <h4 class="fw-semibold mb-2">{{ specificProduct.name }}</h4>
+          <p class="price fs-5 fw-bold text-danger">{{ specificProduct.price }}</p>
+
+          <div class="status mb-3">
+            @switch (product.quantity) { @case (0) {
+            <span class="badge bg-danger px-3 py-2">Out of stock</span> } @case (1) {
+            <span class="badge bg-warning text-dark px-3 py-2">Last one item</span> } @case (2) {
+            <span class="badge bg-warning text-dark px-3 py-2">Last two items</span> } @default {
+            <span class="badge bg-success px-3 py-2">In stock {{ specificProduct.quantity }}</span>
+            } }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer border-0">
+      <button
+        type="button"
+        class="btn btn-danger rounded-pill px-4"
+        data-bs-dismiss="modal"
+        (click)="close(specificProduct.id)"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+}

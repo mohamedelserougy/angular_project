@@ -1,0 +1,26 @@
+<div class="products-container mt-5">
+  @for (product of products; track $index) {
+  <div class="product-card">
+    <div class="product-img">
+      <img [src]="product.img" [alt]="product.name" />
+    </div>
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p class="price">${{ product.price }}</p>
+      <p class="quantity">In Stock: {{ product.quantity }}</p>
+    </div>
+    <div class="d-flex justify-content-around mb-4">
+      <button
+        type="button"
+        class="btn btn bg-secondary-subtle"
+        (click)="goToProductDetails(product.id)"
+      >
+        view details
+      </button>
+      <button type="button" class="btn btn bg-secondary-subtle" (click)="opendialog(product.id)">
+        view Product
+      </button>
+    </div>
+  </div>
+  }
+</div>

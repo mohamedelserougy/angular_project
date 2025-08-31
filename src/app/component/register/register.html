@@ -1,0 +1,110 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <!-- Full Name -->
+  <div class="input-group">
+    <input
+      type="text"
+      placeholder="Username"
+      name="fullName"
+      formControlName="fullName"
+      class="form-control"
+      required
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('fullName')?.invalid &&
+          (registerForm.get('fullName')?.dirty || registerForm.get('fullName')?.touched),
+        'is-valid':
+          registerForm.get('fullName')?.valid &&
+          (registerForm.get('fullName')?.dirty || registerForm.get('fullName')?.touched)
+      }"
+    />
+  </div>
+  @if (registerForm.get('fullName')?.invalid && registerForm.get("fullName")?.touched) {
+  <div class="text-danger mb-4">Name at least 3 char</div>
+  }
+
+  <!-- Email -->
+  <div class="input-group">
+    <input
+      type="text"
+      placeholder="Email"
+      name="email"
+      formControlName="email"
+      class="form-control"
+      required
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('email')?.invalid &&
+          (registerForm.get('email')?.dirty || registerForm.get('email')?.touched),
+        'is-valid':
+          registerForm.get('email')?.valid &&
+          (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)
+      }"
+    />
+  </div>
+  @if (registerForm.get('email')?.invalid && registerForm.get("email")?.touched) {
+  <div class="text-danger mb-4">Email must be valid</div>
+  }
+
+  <!-- Mobile -->
+  <div class="input-group">
+    <input
+      type="text"
+      placeholder="Mobile Number"
+      name="mobile"
+      formControlName="mobile"
+      class="form-control"
+      required
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('mobile')?.invalid &&
+          (registerForm.get('mobile')?.dirty || registerForm.get('mobile')?.touched),
+        'is-valid':
+          registerForm.get('mobile')?.valid &&
+          (registerForm.get('mobile')?.dirty || registerForm.get('mobile')?.touched)
+      }"
+    />
+  </div>
+  @if (registerForm.get('mobile')?.invalid && registerForm.get("mobile")?.touched) {
+  <div class="text-danger mb-4">Mobile must be 10-11 digits</div>
+  }
+
+  <!-- Password -->
+  <div class="input-group">
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      formControlName="password"
+      required
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('password')?.invalid &&
+          (registerForm.get('password')?.dirty || registerForm.get('password')?.touched),
+        'is-valid':
+          registerForm.get('password')?.valid &&
+          (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)
+      }"
+    />
+  </div>
+  @if (registerForm.get('password')?.invalid && registerForm.get("password")?.touched) {
+  <div class="text-danger mb-4">Password must be at least 6 char</div>
+  }
+
+  <!-- Confirm Password -->
+  <div class="input-group">
+    <input
+      type="password"
+      formControlName="confirmPassword"
+      placeholder="Confirm Password"
+      class="form-control"
+    />
+  </div>
+  @if (registerForm.get('confirmPassword')?.invalid && registerForm.get("confirmPassword")?.touched)
+  {
+  <div class="text-danger mb-4">Passwords must match</div>
+  }
+
+  <!-- Buttons -->
+  <button type="submit" class="register-btn" [disabled]="registerForm.invalid">Register</button>
+  <button type="button" class="btn btn-secondary w-100 mt-3" (click)="onReset()">Reset</button>
+</form>

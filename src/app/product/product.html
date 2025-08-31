@@ -1,0 +1,16 @@
+<div class="search-box">
+  <input
+    type="text"
+    placeholder="🔍 Search for a product..."
+    [(ngModel)]="searchText"
+    (ngModelChange)="filteredText($event)"
+  />
+</div>
+
+<div class="products-grid text-white">
+  @for (prd of filteredArray; track prd.id) {
+  <app-product-card [product]="prd" (veiwdetails)="handelVeiwDetals($event)"></app-product-card>
+  } @if (currentProduct) {
+  <app-viewdetails [product]="currentProduct" (closeEvent)="handelCloseDetals()"></app-viewdetails>
+  }
+</div>
