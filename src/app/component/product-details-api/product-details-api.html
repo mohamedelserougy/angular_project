@@ -1,0 +1,63 @@
+@if (productDetails) {
+<div class="single-product-container">
+  <div class="product-images">
+    <img class="main-img" [src]="productDetails.thumbnail" [alt]="productDetails.title" />
+    <div class="thumbs">
+      <img *ngFor="let img of productDetails.images" [src]="img" [alt]="productDetails.title" />
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h1 class="title">{{ productDetails.title }}</h1>
+    <p class="brand">
+      Brand: <span>{{ productDetails.brand }}</span>
+    </p>
+    <p class="category">
+      Category: <span>{{ productDetails.category }}</span>
+    </p>
+
+    <div class="price-box">
+      <span class="old-price">
+        ${{
+          productDetails.price + (productDetails.price * productDetails.discountPercentage) / 100
+            | number : '1.2-2'
+        }}
+      </span>
+      <span class="new-price">${{ productDetails.price }}</span>
+    </div>
+
+    <p class="stock" [ngClass]="{ 'in-stock': productDetails.availabilityStatus === 'In Stock' }">
+      {{ productDetails.availabilityStatus }} ({{ productDetails.stock }} left)
+    </p>
+
+    <p class="description">{{ productDetails.description }}</p>
+
+    <div class="extra">
+      <p>Warranty: {{ productDetails.warrantyInformation }}</p>
+      <p>Shipping: {{ productDetails.shippingInformation }}</p>
+      <p>Return Policy: {{ productDetails.returnPolicy }}</p>
+      <p>Minimum Order: {{ productDetails.minimumOrderQuantity }}</p>
+      <p>Barcode: {{ productDetails.meta.barcode }}</p>
+      <img class="qr" [src]="productDetails.meta.qrCode" alt="QR Code" />
+    </div>
+
+    <div class="actions">
+      <button class="buy-btn">Add to Cart</button>
+      <button class="details-btn">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<div class="reviews-section">
+  <h2>Customer Reviews</h2>
+  <div class="review-card" *ngFor="let review of productDetails.reviews">
+    <div class="review-header">
+      <span class="reviewer">{{ review.reviewerName }}</span>
+      <span class="rating">⭐ {{ review.rating }}</span>
+    </div>
+    <p class="comment">"{{ review.comment }}"</p>
+    <small>{{ review.date | date : 'mediumDate' }}</small>
+  </div>
+</div>
+
+}
